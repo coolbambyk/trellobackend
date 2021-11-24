@@ -4,6 +4,13 @@ const ListController = require("./ListController.js");
 
 const router = new Router()
 
+router.use((req, res, next) => {
+    res.append('Access-Control-Allow-Origin', ['*']);
+    res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.append('Access-Control-Allow-Headers', 'Content-Type');
+    next();
+})
+
 router.post('/cards', PostController.create)
 router.get('/cards', PostController.getAll)
 router.get('/cards/:id', PostController.getOne)
